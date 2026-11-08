@@ -138,7 +138,15 @@ export function Process({ locale }: { locale: Locale }) {
     </ol>
   );
 }
-export function CTA({ locale }: { locale: Locale }) {
+export function CTA({
+  locale,
+  buttonLabel,
+  contactQuery = "",
+}: {
+  locale: Locale;
+  buttonLabel?: string;
+  contactQuery?: string;
+}) {
   const t = content[locale];
   return (
     <section className="container cta-wrap">
@@ -155,8 +163,11 @@ export function CTA({ locale }: { locale: Locale }) {
           <h2>{t.ctaTitle}</h2>
           <p>{t.ctaDescription}</p>
         </div>
-        <Link href={href(locale, "contact")} className="button light">
-          {t.discuss}
+        <Link
+          href={href(locale, "contact") + contactQuery}
+          className="button light"
+        >
+          {buttonLabel ?? t.discuss}
           <Arrow />
         </Link>
       </div>

@@ -1,5 +1,7 @@
 # Phase 2 — conversion, credibility & visual quality
 
+> Historical baseline. Current FlowDesk status and evidence are documented in the [README](README.md).
+
 Completed locally on 6 November 2026. The existing Next.js application and routing were preserved. This report closes Phase 2; no Phase 3 implementation or deployment was started.
 
 ## 1. Overall quality before changes

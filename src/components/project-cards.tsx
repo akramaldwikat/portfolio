@@ -1,9 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { content } from "@/data/content";
 import { projects } from "@/data/projects";
+import { flowdesk } from "@/data/flowdesk";
+import {
+  flowdeskImagePath,
+  flowdeskScreenshots,
+} from "@/data/flowdesk-screenshots";
 import { href, type Locale } from "@/lib/site";
-import { DomainBlueprint } from "./architecture-diagram";
+import { FlowdeskLinks } from "./flowdesk-links";
 
 export function ProjectCards({
   locale,
@@ -13,6 +19,8 @@ export function ProjectCards({
   featuredOnly?: boolean;
 }) {
   const t = content[locale];
+  const featured = flowdesk[locale];
+  const dashboard = flowdeskScreenshots[0];
   const visible = featuredOnly ? projects.filter((p) => p.caseStudy) : projects;
   return (
     <div className="project-grid">
@@ -25,12 +33,14 @@ export function ProjectCards({
             key={p.slug}
           >
             {publishedStudy ? (
-              <div className="project-blueprint">
-                <span className="status-pill">
-                  <span className="status-dot" />
-                  {t.independent}
-                </span>
-                <DomainBlueprint locale={locale} />
+              <div className="project-preview">
+                <Image
+                  src={flowdeskImagePath(dashboard.file)}
+                  alt={dashboard[locale][1]}
+                  width={dashboard.width}
+                  height={dashboard.height}
+                  sizes="(max-width: 850px) 92vw, 48vw"
+                />
               </div>
             ) : (
               <div className={`upcoming-art upcoming-${i}`}>
@@ -56,18 +66,29 @@ export function ProjectCards({
                 <span className="status-dot" />
                 {copy.status}
               </p>
-              <dl className="project-story">
-                <div>
-                  <dt>{t.projectProblem}</dt>
-                  <dd>{copy.problem}</dd>
-                </div>
-                <div>
-                  <dt>{t.projectSolution}</dt>
-                  <dd>{copy.solution}</dd>
-                </div>
-              </dl>
-              <p className="stack-caption">{t.proposedStack}</p>
-              <ul className="tags" aria-label={t.proposedStack}>
+              {publishedStudy ? (
+                <p className="project-summary">{copy.solution}</p>
+              ) : (
+                <dl className="project-story">
+                  <div>
+                    <dt>{t.projectProblem}</dt>
+                    <dd>{copy.problem}</dd>
+                  </div>
+                  <div>
+                    <dt>{t.projectSolution}</dt>
+                    <dd>{copy.solution}</dd>
+                  </div>
+                </dl>
+              )}
+              <p className="stack-caption">
+                {publishedStudy ? featured.technologies : t.proposedStack}
+              </p>
+              <ul
+                className="tags"
+                aria-label={
+                  publishedStudy ? featured.technologies : t.proposedStack
+                }
+              >
                 {p.technologies.map((tech) => (
                   <li key={tech}>
                     <bdi>{tech}</bdi>
@@ -90,7 +111,11 @@ export function ProjectCards({
                     aria-hidden="true"
                   />
                 </Link>
+                {publishedStudy && <FlowdeskLinks locale={locale} />}
               </div>
+              {publishedStudy && (
+                <p className="flowdesk-wake-note">{featured.wakeNote}</p>
+              )}
             </div>
           </article>
         );

@@ -313,85 +313,6 @@
   justify-content: space-between;
   width: 100%;
 }
-.project-blueprint {
-  padding: 30px;
-  background: var(--art);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 0;
-}
-.project-blueprint .status-pill {
-  align-self: flex-start;
-  font-size: 11px;
-  line-height: 1.8;
-}
-.domain-blueprint {
-  padding-top: 40px;
-}
-.domain-blueprint > .eyebrow {
-  font-size: 10px;
-  margin-bottom: 15px;
-  letter-spacing: 1.1px;
-}
-.domain-blueprint > h3 {
-  font-size: 28px;
-  letter-spacing: -1px;
-  line-height: 1.35;
-  max-width: 300px;
-}
-.domain-blueprint ol {
-  list-style: none;
-  padding: 0;
-  margin: 30px 0;
-  display: grid;
-  gap: 14px;
-}
-.domain-blueprint li {
-  padding: 17px;
-  display: flex;
-  align-items: center;
-  gap: 17px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  position: relative;
-}
-.domain-blueprint li:not(:last-child):after {
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  height: 14px;
-  width: 1px;
-  background: var(--green);
-  inset-inline-start: 30px;
-}
-.domain-index {
-  font-size: 11px;
-  color: var(--green);
-}
-.domain-blueprint strong {
-  font-size: 16px;
-}
-.domain-blueprint li p {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 3px;
-}
-.domain-port {
-  width: 6px;
-  height: 6px;
-  border: 1px solid var(--green);
-  border-radius: 50%;
-  margin-inline-start: auto;
-}
-.domain-footer {
-  padding-top: 16px;
-  border-top: 1px solid color-mix(in srgb, var(--green), transparent 80%);
-  color: var(--green);
-  font-size: 11px;
-  line-height: 1.9;
-}
 .upcoming-art {
   height: 120px;
 }
@@ -604,31 +525,9 @@
 .case-checks svg {
   margin-top: 6px;
 }
-.workflow-steps {
-  counter-reset: step;
-  margin-top: 27px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.workflow-steps article {
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--surface);
-}
-.workflow-number {
-  font-size: 12px;
-  color: var(--green);
-}
 .case-content .workflow-steps h3 {
   margin-block: 15px 9px;
   font-size: 16px;
-}
-.workflow-steps p {
-  font-size: 14px;
-  line-height: 1.85;
-  color: var(--muted);
 }
 .table-frame {
   margin-top: 28px;
@@ -672,36 +571,9 @@
 .table-frame:not(:has(th:nth-child(4))) th:first-child {
   width: 34%;
 }
-.concept-block {
-  margin-top: 30px;
-  padding-top: 25px;
-  border-top: 1px solid var(--line);
-}
-.concept-block > p {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.9;
-}
 .case-screenshot figcaption {
   font-size: 12px;
   line-height: 1.8;
-}
-.source-unavailable {
-  padding: 20px 24px;
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.9;
-  margin-top: 20px;
-}
-.case-source {
-  margin-top: 23px;
-}
-[dir="rtl"] .domain-blueprint > h3 {
-  letter-spacing: 0;
-  line-height: 1.7;
 }
 [dir="rtl"] .tags {
   justify-content: flex-start;
@@ -745,9 +617,6 @@
   .case-layout {
     grid-template-columns: 195px minmax(0, 1fr);
     gap: 32px;
-  }
-  .project-blueprint {
-    padding: 25px;
   }
   .detailed-service {
     gap: 40px;
@@ -793,21 +662,6 @@
   }
   .featured-project {
     grid-template-columns: 1fr;
-  }
-  .project-blueprint {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 30px;
-    align-items: start;
-  }
-  .domain-blueprint {
-    padding-top: 0;
-  }
-  .domain-blueprint ol {
-    margin-block: 20px;
-  }
-  .domain-blueprint > h3 {
-    max-width: none;
   }
   .contact-layout {
     gap: 35px;
@@ -1019,19 +873,6 @@
   .service-outcome {
     padding: 20px;
   }
-  .project-blueprint {
-    display: block;
-    padding: 25px;
-  }
-  .domain-blueprint {
-    padding-top: 28px;
-  }
-  .domain-blueprint > h3 {
-    font-size: 27px;
-  }
-  .domain-blueprint ol {
-    margin-block: 25px;
-  }
   .project-info,
   .featured-project .project-info {
     padding: 25px;
@@ -1129,12 +970,6 @@
   .case-checks li {
     font-size: 14px;
   }
-  .workflow-steps {
-    grid-template-columns: 1fr;
-  }
-  .workflow-steps article {
-    padding: 22px;
-  }
   .table-frame th,
   .table-frame td {
     padding: 11px 8px;
@@ -1163,5 +998,156 @@
 @media (min-width: 1500px) {
   .hero {
     padding-block: 80px;
+  }
+}
+
+/* FlowDesk case study */
+.project-preview {
+  display: grid;
+  align-items: center;
+  min-width: 0;
+  padding: clamp(16px, 3vw, 38px);
+  background: var(--art);
+}
+.project-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px #101d1824;
+}
+.featured-project .project-summary {
+  margin-top: 18px;
+  line-height: 1.75;
+}
+.featured-project .project-links,
+.flowdesk-meta .project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.featured-project .project-links > .button,
+.flowdesk-meta .project-links > .button {
+  width: auto;
+  justify-content: center;
+}
+.featured-project .project-links > .button {
+  padding-inline: 12px;
+}
+.flowdesk-wake-note {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px !important;
+  line-height: 1.7;
+}
+.flowdesk-meta {
+  align-items: flex-start;
+  flex-direction: column;
+}
+.flowdesk-meta .project-links,
+.flowdesk-meta .flowdesk-wake-note {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.flowdesk-proof {
+  margin: 0;
+}
+.flowdesk-workflow,
+.flowdesk-architecture {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+}
+.flowdesk-workflow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.flowdesk-workflow li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  font-size: 13px;
+}
+.flowdesk-workflow li > span {
+  color: var(--green);
+  font-size: 10px;
+}
+.flowdesk-architecture {
+  display: grid;
+  max-width: 580px;
+  gap: 8px;
+}
+.flowdesk-connector {
+  display: block;
+  margin: 0 auto 8px;
+  color: var(--green);
+}
+.flowdesk-layer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.flowdesk-layer .node-icon {
+  flex: 0 0 auto;
+}
+.flowdesk-layer p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.flowdesk-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+  margin-top: 24px;
+}
+.flowdesk-gallery .case-screenshot {
+  min-width: 0;
+  margin: 0;
+}
+.flowdesk-gallery .case-screenshot a {
+  display: block;
+}
+.flowdesk-gallery .case-screenshot img {
+  width: 100%;
+  height: auto;
+}
+.flowdesk-gallery .gallery-lead {
+  grid-column: 1 / -1;
+}
+.flowdesk-gallery .gallery-mobile {
+  width: min(100%, 280px);
+}
+.flowdesk-gallery .gallery-mobile img {
+  max-height: 500px;
+  object-fit: cover;
+  object-position: top;
+}
+@media (max-width: 650px) {
+  .flowdesk-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .flowdesk-gallery .gallery-mobile {
+    justify-self: center;
+  }
+}
+@media (max-width: 430px) {
+  .flowdesk-workflow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

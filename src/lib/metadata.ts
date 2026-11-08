@@ -7,7 +7,7 @@ const pageNames = {
     "About",
     "Services",
     "Projects",
-    "FlowDesk — Independent Project Case Study",
+    "FlowDesk — Multi-Tenant Business Operations Platform",
     "Contact",
   ],
   ar: [
@@ -15,7 +15,7 @@ const pageNames = {
     "نبذة عني",
     "الخدمات",
     "المشاريع",
-    "FlowDesk — دراسة مشروع مستقل",
+    "FlowDesk — منصة إدارة عمليات الأعمال متعددة المؤسسات",
     "تواصل معي",
   ],
 };
@@ -36,7 +36,9 @@ export function pageMetadata(locale: Locale, route: PageRoute): Metadata {
     t.aboutIntro,
     t.servicesPageIntro,
     t.projectsPageIntro,
-    t.caseIntro,
+    locale === "ar"
+      ? "دراسة مشروع FlowDesk المستقل، تطبيق متكامل لإدارة عمليات الأعمال باستخدام Next.js وNestJS وPostgreSQL، مع عزل بيانات المؤسسات وإدارة الصلاحيات حسب الدور."
+      : "A full-stack portfolio case study built with Next.js, NestJS and PostgreSQL, covering organization isolation, RBAC and a deployed business operations workflow.",
     t.contactIntro,
   ][index];
   const canonical = href(locale, route);

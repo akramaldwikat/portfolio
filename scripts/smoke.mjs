@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 const base = process.env.TEST_BASE_URL || "http://localhost:3000";
+const contactOrigin = process.env.TEST_SITE_ORIGIN || base;
 assert.ok(
   ["localhost", "127.0.0.1", "[::1]"].includes(new URL(base).hostname),
   "Smoke checks are local-only and must not submit to a live site.",
@@ -13,6 +14,16 @@ const paths = [
   "/contact",
 ];
 const documents = new Map();
+const flowdeskImages = [
+  "dashboard-desktop",
+  "clients-desktop",
+  "projects-desktop",
+  "project-detail-desktop",
+  "task-board-desktop",
+  "team-members-desktop",
+  "activity-desktop",
+  "project-detail-mobile",
+].map((name) => `/flowdesk/${name}.jpg`);
 let linkCount = 0;
 for (const prefix of ["", "/ar"]) {
   for (const path of paths) {
@@ -71,36 +82,70 @@ for (const path of ["/contact", "/ar/contact"]) {
       `${path} configured public contact ${url}`,
     );
 }
-for (const path of ["/projects/flowdesk", "/ar/projects/flowdesk"]) {
+for (const path of [
+  "/",
+  "/ar",
+  "/projects",
+  "/ar/projects",
+  "/projects/flowdesk",
+  "/ar/projects/flowdesk",
+]) {
   const html = documents.get(path);
+  const arabic = path.startsWith("/ar");
+  assert.ok(
+    html.includes(
+      arabic
+        ? "مشروع تجريبي مستقل مكتمل"
+        : "Completed Independent Demo Project",
+    ),
+    path,
+  );
+  assert.doesNotMatch(
+    html,
+    /application development in progress|تطوير التطبيق لم يكتمل|flowdesk-concept\.svg/i,
+  );
+  for (const url of [
+    "https://flowdesk-web-8atx.onrender.com/",
+    "https://github.com/akramaldwikat/flowDesk",
+  ]) {
+    const link = [...html.matchAll(/<a\b[^>]*>/g)].find(([tag]) =>
+      tag.includes(`href="${url}"`),
+    )?.[0];
+    assert.ok(link, `${path} external link ${url}`);
+    assert.match(link, /target="_blank"/);
+    assert.match(link, /rel="noopener noreferrer"/);
+  }
+  if (!path.endsWith("/flowdesk")) continue;
   for (const id of [
     "overview",
     "problem",
-    "target-users",
-    "requirements",
-    "solution",
     "features",
+    "screenshots",
     "roles",
+    "tenancy",
     "workflow",
     "architecture",
     "database",
     "decisions",
     "security",
-    "performance",
-    "responsive-ux",
-    "stack",
-    "challenges",
-    "lessons",
-    "roadmap",
-    "github",
-    "live-demo",
+    "testing",
+    "hosted-validation",
+    "limitations",
   ])
     assert.ok(html.includes(`id="${id}"`), `${path} section ${id}`);
+  for (const image of flowdeskImages)
+    assert.ok(html.includes(`href="${image}"`), `${path} screenshot ${image}`);
+  assert.match(html, /54/);
+  assert.match(html, /Neon PostgreSQL/);
 }
 for (const [path, html] of documents) {
   for (const match of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
     const url = new URL(match[1].replaceAll("&amp;", "&"), base + path);
     if (url.origin !== new URL(base).origin) continue;
+    if (flowdeskImages.includes(url.pathname)) {
+      linkCount++;
+      continue;
+    }
     const target = documents.get(url.pathname);
     assert.ok(target, `Unknown internal route from ${path}: ${url.pathname}`);
     if (url.hash)
@@ -132,13 +177,13 @@ for (const path of [
   "/opengraph-image",
   "/ar/opengraph-image",
   "/icon.svg",
-  "/flowdesk-concept.svg",
+  ...flowdeskImages,
 ]) {
   const res = await fetch(base + path);
   assert.equal(res.status, 200, path);
   assert.match(res.headers.get("content-type"), /image\//);
 }
-const post = async (data, origin = base) =>
+const post = async (data, origin = contactOrigin) =>
   fetch(`${base}/api/contact`, {
     method: "POST",
     headers: { origin, "Content-Type": "application/json" },
@@ -157,5 +202,5 @@ const unconfigured = await post({
 assert.equal(unconfigured.status, 503);
 assert.equal((await unconfigured.json()).code, "not-configured");
 console.log(
-  `PASS: 12 localized pages, ${linkCount} internal links and anchors, 40 case-study sections, disabled unconfigured forms, 5 genuine 404s, sitemap, robots, social images, assets and contact HTTP safeguards.`,
+  `PASS: 12 localized pages, ${linkCount} internal links and anchors, FlowDesk sections, screenshots and external CTAs, disabled unconfigured forms, 5 genuine 404s, sitemap, robots, social images and contact HTTP safeguards.`,
 );

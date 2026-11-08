@@ -9,22 +9,13 @@ import {
 import { architectureCopy } from "@/data/architecture";
 import type { Locale } from "@/lib/site";
 
-export function SystemDiagram({
-  locale,
-  planned = false,
-}: {
-  locale: Locale;
-  planned?: boolean;
-}) {
+export function SystemDiagram({ locale }: { locale: Locale }) {
   const t = architectureCopy[locale];
   return (
-    <figure
-      className="system-art"
-      aria-label={planned ? t.flowdeskTitle : t.title}
-    >
+    <figure className="system-art" aria-label={t.title}>
       <figcaption className="art-top">
         <span className="art-dot" />
-        {planned ? t.planned : t.generic}
+        {t.generic}
         <span className="art-number" dir="ltr">
           SYS—01
         </span>
@@ -86,36 +77,7 @@ export function SystemDiagram({
           })}
         </div>
       </div>
-      <p className="art-bottom">{planned ? t.plannedNote : t.note}</p>
+      <p className="art-bottom">{t.note}</p>
     </figure>
-  );
-}
-
-export function DomainBlueprint({ locale }: { locale: Locale }) {
-  const t = architectureCopy[locale];
-  return (
-    <div className="domain-blueprint">
-      <p className="eyebrow">{t.domainLabel}</p>
-      <h3>{t.domainTitle}</h3>
-      <ol>
-        {[
-          [t.client, t.clientNote],
-          [t.project, t.projectNote],
-          [t.task, t.taskNote],
-        ].map(([title, note], i) => (
-          <li key={title}>
-            <span className="domain-index" aria-hidden="true">
-              0{i + 1}
-            </span>
-            <div>
-              <strong>{title}</strong>
-              <p>{note}</p>
-            </div>
-            <span className="domain-port" aria-hidden="true" />
-          </li>
-        ))}
-      </ol>
-      <p className="domain-footer">{t.domainFooter}</p>
-    </div>
   );
 }

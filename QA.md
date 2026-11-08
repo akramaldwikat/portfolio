@@ -1,5 +1,7 @@
 # Verification record — Phase 2
 
+> Historical baseline. Current FlowDesk status and evidence are documented in the [README](README.md).
+
 Verified locally on 6 November 2026 against the production Next.js build. See PHASE2-REPORT.md for the complete assessment and PHASE2-AUDIT.md for the pre-change findings.
 
 ## Current results

@@ -4,7 +4,7 @@ export const projects = [
     slug: "flowdesk",
     name: "FlowDesk",
     technologies: ["Next.js", "NestJS", "PostgreSQL", "Prisma"],
-    status: "in-progress",
+    status: "completed",
     caseStudy: "projects/flowdesk",
     inquiryType: "1",
     en: {
@@ -12,16 +12,16 @@ export const projects = [
       problem:
         "Client records, project updates and tasks live in separate tools. Teams lose context and ownership becomes unclear.",
       solution:
-        "A proposed organization-based workspace linking clients, projects and tasks, with role-aware access and traceable activity.",
-      status: "Case study available · application development in progress",
+        "A full-stack, multi-tenant workspace for managing clients, projects, team responsibilities and task workflows.",
+      status: "Completed Independent Demo Project",
     },
     ar: {
       type: "منصة إدارة عمليات الأعمال",
       problem:
         "تتوزع سجلات العملاء وتحديثات المشاريع والمهام بين أدوات منفصلة، فتضيع المتابعة وتتداخل المسؤوليات.",
       solution:
-        "مساحة عمل مقترحة تربط العملاء بالمشاريع والمهام، مع صلاحيات واضحة وسجل لتغييرات العمل.",
-      status: "دراسة المشروع متاحة · تطوير التطبيق لم يكتمل بعد",
+        "مساحة عمل متكاملة لإدارة العملاء والمشاريع ومسؤوليات الفريق وسير المهام، مع عزل بيانات كل مؤسسة.",
+      status: "مشروع تجريبي مستقل مكتمل",
     },
   },
   {

@@ -55,6 +55,6 @@ export const site = {
   github: safeUrl(process.env.NEXT_PUBLIC_GITHUB_URL || profile.github),
   whatsapp,
   whatsappUrl: whatsapp ? `https://wa.me/${whatsapp.slice(1)}` : undefined,
-  flowdeskGithub: safeUrl(process.env.NEXT_PUBLIC_FLOWDESK_GITHUB_URL),
-  flowdeskDemo: safeUrl(process.env.NEXT_PUBLIC_FLOWDESK_DEMO_URL),
+  flowdeskGithub: "https://github.com/akramaldwikat/flowDesk",
+  flowdeskDemo: "https://flowdesk-web-8atx.onrender.com/",
 };

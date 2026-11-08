@@ -1,5 +1,7 @@
 # Phase 2 — audit before changes
 
+> Historical baseline. Current FlowDesk status and evidence are documented in the [README](README.md).
+
 Reviewed on 6 November 2026 before modifying application code. Sources: all page compositions, English/Arabic content, project/service data, configuration, contact endpoint and validation, client components, styles, metadata, routing, README, QA record, CI and tests. Browser review covered all six page types, English desktop/light, Arabic mobile/light, every route in mobile dark mode, plus desktop Arabic/dark project presentation. Baseline had no observed horizontal overflow at the inspected sizes; that did not establish conversion quality.
 
 ## Overall assessment

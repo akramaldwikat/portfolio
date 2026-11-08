@@ -8,7 +8,7 @@ const en = {
   shortRole: "FULL-STACK ENGINEERING · BUSINESS SYSTEMS",
   skip: "Skip to content",
   work: "View my work",
-  caseStudy: "Explore case study",
+  caseStudy: "View Case Study",
   allProjects: "All projects",
   allServices: "Explore services",
   eyebrow: "FROM COMPLEXITY TO CLARITY",
@@ -26,13 +26,8 @@ const en = {
   projectsLabel: "02 / SELECTED WORK",
   projectsTitle: "Behind the interface,\na system that makes sense.",
   projectsIntro:
-    "Explore the business problem, proposed solution and engineering decisions in an independent case study. Project status is always explicit.",
-  independent: "Independent Demo Project",
+    "Explore FlowDesk, a deployed workspace for business operations, and the engineering decisions behind it.",
   coming: "Coming soon",
-  presentation: "Project presentation",
-  planned: "Planned portfolio project",
-  concept: "UI concept · illustrative data · not a live product",
-  unavailable: "Not published yet",
   whyLabel: "03 / THE WAY I WORK",
   whyTitle: "A technical partner.\nA business perspective.",
   values: [
@@ -103,7 +98,7 @@ const en = {
   suitable: "A good fit for",
   projectsPageTitle: "From workflow\nto system.",
   projectsPageIntro:
-    "An honest look at how I approach business software: the operational problem, the proposed system and the decisions behind it. These are independent portfolio projects, not commissioned client work.",
+    "FlowDesk is the completed, deployed case study. CommerceKit and ClientPilot are independent project concepts in planning.",
   contactLabel: "CONTACT / LET’S BUILD SOMETHING USEFUL",
   contactTitle: "Tell me what\nyou’re working on.",
   contactIntro:
@@ -116,12 +111,11 @@ const en = {
   ],
   channels: "Contact directly",
   unconfigured: "Contact details will be added before launch.",
-  caseLabel: "FLOWDESK / INDEPENDENT DEMO PROJECT",
-  caseTitle: "One workspace.\nConnected operations.",
+  caseLabel: "FLOWDESK / PORTFOLIO CASE STUDY",
+  caseTitle: "FlowDesk\nBusiness operations workspace",
   caseIntro:
-    "A business operations platform concept designed to help small and medium-sized teams manage clients, projects, tasks and team workflows from a centralized system.",
-  caseStatus: "Portfolio Case Study — Application Development In Progress",
-  proofLink: "Explore my engineering approach",
+    "A workspace for small teams to manage clients, projects and assigned work, with organization-level data isolation and role-based access.",
+  proofLink: "See the deployed FlowDesk architecture",
   proofPoints: [
     "Business workflows first",
     "Frontend + backend ownership",
@@ -164,7 +158,7 @@ const ar: typeof en = {
   shortRole: "تطوير برمجيات متكاملة وأنظمة أعمال",
   skip: "انتقل إلى المحتوى",
   work: "استعرض أعمالي",
-  caseStudy: "استكشف دراسة المشروع",
+  caseStudy: "عرض دراسة المشروع",
   allProjects: "جميع المشاريع",
   allServices: "استكشف الخدمات",
   eyebrow: "من التعقيد إلى الوضوح",
@@ -181,13 +175,8 @@ const ar: typeof en = {
   projectsLabel: "02 / أعمال مختارة",
   projectsTitle: "خلف كل واجهة،\nنظام مدروس.",
   projectsIntro:
-    "اطّلع على مشكلة العمل والحل المقترح والقرارات الهندسية في دراسة مستقلة، مع توضيح مرحلة كل مشروع.",
-  independent: "مشروع تجريبي مستقل",
+    "تعرّف على FlowDesk، مساحة عمل منشورة لإدارة العمليات، وعلى القرارات الهندسية وراءها.",
   coming: "قريبًا",
-  presentation: "عرض المشروع",
-  planned: "مشروع مستقل مخطط له",
-  concept: "تصوّر للواجهة · بيانات توضيحية · ليس منتجًا منشورًا",
-  unavailable: "لم يُنشر بعد",
   whyLabel: "03 / أسلوب عملي",
   whyTitle: "شريك تقني.\nورؤية تفهم الأعمال.",
   values: [
@@ -257,7 +246,7 @@ const ar: typeof en = {
   suitable: "مشاريع مناسبة",
   projectsPageTitle: "من إجراءات العمل\nإلى تصميم النظام.",
   projectsPageIntro:
-    "نماذج توضّح كيف أتعامل مع برمجيات الأعمال: المشكلة التشغيلية، والنظام المقترح، وأسباب القرارات التقنية. جميعها مشاريع مستقلة، وليست أعمالًا منفّذة بتكليف من عملاء.",
+    "FlowDesk دراسة لمشروع مكتمل ومنشور. أما CommerceKit وClientPilot فهما مشروعان مستقلان في مرحلة التخطيط.",
   contactLabel: "تواصل معي / لنبنِ شيئًا مفيدًا",
   contactTitle: "حدّثني عن\nمشروعك القادم.",
   contactIntro:
@@ -270,12 +259,11 @@ const ar: typeof en = {
   ],
   channels: "تواصل مباشر",
   unconfigured: "ستُضاف بيانات التواصل قبل الإطلاق.",
-  caseLabel: "FLOWDESK / مشروع تجريبي مستقل",
-  caseTitle: "مساحة عمل واحدة.\nوعمليات مترابطة.",
+  caseLabel: "FLOWDESK / دراسة مشروع",
+  caseTitle: "FlowDesk\nمساحة عمل لإدارة العمليات",
   caseIntro:
-    "تصوّر لمنصة عمليات أعمال تساعد الفرق الصغيرة والمتوسطة على إدارة العملاء والمشاريع والمهام وسير العمل ضمن نظام مركزي.",
-  caseStatus: "دراسة مشروع مستقل — تطوير التطبيق لم يكتمل بعد",
-  proofLink: "اطّلع على نهجي الهندسي",
+    "مساحة عمل للفرق الصغيرة تجمع العملاء والمشاريع والمهام المسندة، وتعزل بيانات المؤسسات وتضبط الوصول حسب الدور.",
+  proofLink: "اطّلع على معمارية FlowDesk المنشورة",
   proofPoints: [
     "فهم إجراءات العمل أولًا",
     "تطوير الواجهات والأنظمة الخلفية",

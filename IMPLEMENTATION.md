@@ -1,5 +1,7 @@
 # Implementation plan
 
+> Historical baseline. Current FlowDesk status and evidence are documented in the [README](README.md).
+
 1. Establish typed bilingual content, routes, site configuration, and design tokens.
 2. Build shared navigation, footer, project cards, service rows, process, architecture artwork, and conversion sections.
 3. Implement Home, About, Services, Projects, FlowDesk case study, and Contact in English and Arabic.

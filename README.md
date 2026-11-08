@@ -39,7 +39,7 @@ npm run start
 | `src/lib/metadata.ts`                   | Localized titles, descriptions, canonical/alternate URLs and social metadata          |
 | `src/lib/contact.ts`                    | Server-only shared Redis rate limiting; schema re-export for compatibility            |
 | `src/app/api/contact/route.ts`          | Same-origin contact endpoint and server-only Resend delivery                          |
-| `public/flowdesk-concept.svg`           | Original, explicitly labeled illustrative UI concept                                  |
+| `public/flowdesk/`                      | Reviewed screenshots copied from the public FlowDesk repository                       |
 
 Most content is rendered on the server and prerendered at build time. Interactive navigation and the form are client components. Local variable fonts avoid third-party font requests. The architecture illustration is CSS and SVG iconography; project artwork uses `next/image`. There are no stock photos, remote image dependencies, motion libraries or unnecessary application state stores.
 
@@ -66,7 +66,7 @@ Semantic header, navigation, main, section, article and footer elements; one H1 
 
 ## Honest project presentation
 
-FlowDesk is an **Independent Demo Project** labeled **Portfolio Case Study — Application Development In Progress**. The case study describes a proposed architecture, planned capabilities, access roles, challenges, engineering decisions and future work. Project cards show a domain blueprint. The original interface concept appears only inside the case study, uses illustrative sample data and is **not** a working application screenshot. Repository and demo links appear only after actual URLs are configured.
+FlowDesk is a **Completed Independent Demo Project**. The bilingual case study documents the deployed Next.js, NestJS and Neon PostgreSQL architecture, tenant isolation, permissions, and verification. The featured card and case study link to the [live demo](https://flowdesk-web-8atx.onrender.com/) and [public source](https://github.com/akramaldwikat/flowDesk). The eight screenshots are actual application captures with fictional seed data. Their originals and capture details are in the [FlowDesk screenshot inventory](https://github.com/akramaldwikat/flowDesk/tree/main/docs/screenshots).
 
 CommerceKit and ClientPilot are labeled **Coming soon**. They have abstract artwork rather than fabricated product screenshots. Their technology tags describe planned technologies. The portfolio repository does not implement these applications.
 
@@ -78,19 +78,17 @@ Copy-Item .env.example .env.local
 
 Edit `.env.local` locally or set the equivalent environment variables on the hosting provider. Never commit secrets.
 
-| Variable                          | Purpose                                                                                                                                |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`            | Real owned HTTPS origin, no trailing slash or path. Required for production canonical URLs, sitemap, schema and contact origin checks. |
-| `NEXT_PUBLIC_CONTACT_EMAIL`       | Actual public business email; optional                                                                                                 |
-| `NEXT_PUBLIC_LINKEDIN_URL`        | Actual HTTPS LinkedIn profile; optional                                                                                                |
-| `NEXT_PUBLIC_GITHUB_URL`          | Actual HTTPS GitHub profile; optional                                                                                                  |
-| `NEXT_PUBLIC_FLOWDESK_GITHUB_URL` | Actual public project repository, when published                                                                                       |
-| `NEXT_PUBLIC_FLOWDESK_DEMO_URL`   | Actual live application, when available                                                                                                |
-| `RESEND_API_KEY`                  | Server-only Resend key                                                                                                                 |
-| `CONTACT_FROM`                    | Sender address on a verified Resend domain                                                                                             |
-| `CONTACT_TO`                      | Destination inbox for inquiries                                                                                                        |
-| `UPSTASH_REDIS_REST_URL`          | HTTPS Upstash Redis REST endpoint                                                                                                      |
-| `UPSTASH_REDIS_REST_TOKEN`        | Server-only Redis REST token                                                                                                           |
+| Variable                    | Purpose                                                                                                                                |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`      | Real owned HTTPS origin, no trailing slash or path. Required for production canonical URLs, sitemap, schema and contact origin checks. |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Actual public business email; optional                                                                                                 |
+| `NEXT_PUBLIC_LINKEDIN_URL`  | Actual HTTPS LinkedIn profile; optional                                                                                                |
+| `NEXT_PUBLIC_GITHUB_URL`    | Actual HTTPS GitHub profile; optional                                                                                                  |
+| `RESEND_API_KEY`            | Server-only Resend key                                                                                                                 |
+| `CONTACT_FROM`              | Sender address on a verified Resend domain                                                                                             |
+| `CONTACT_TO`                | Destination inbox for inquiries                                                                                                        |
+| `UPSTASH_REDIS_REST_URL`    | HTTPS Upstash Redis REST endpoint                                                                                                      |
+| `UPSTASH_REDIS_REST_TOKEN`  | Server-only Redis REST token                                                                                                           |
 
 `NEXT_PUBLIC_*` values are embedded during the build. **Rebuild after changing them.** Akram’s supplied public GitHub, LinkedIn, email and WhatsApp details are centralized in `src/data/profile.ts`. LinkedIn tracking parameters have been removed, and WhatsApp uses `https://wa.me/962779103342`. Public environment values override these defaults. Missing or invalid link values are omitted, never rendered as dead buttons. With no site origin configured, pages are marked `noindex`, robots disallows crawling, schema is omitted and the local canonical fallback is `http://localhost:3000`.
 
@@ -114,9 +112,18 @@ npm run build
 npm audit
 ```
 
-For HTTP smoke checks, run `npm run start` in one terminal and, with the unconfigured local defaults, run in another:
+For HTTP smoke checks, set a reserved test origin before building and starting the local server. Leave the contact delivery settings empty.
 
 ```powershell
+$env:NEXT_PUBLIC_SITE_URL = 'https://portfolio.example'
+npm run build
+npm run start
+```
+
+In another terminal, use the same test origin:
+
+```powershell
+$env:TEST_SITE_ORIGIN = 'https://portfolio.example'
 npm run test:smoke
 ```
 
@@ -130,7 +137,7 @@ See `QA.md` for observed verification and limits. Phase 2 findings are recorded 
 
 ### Vercel
 
-1. Put this directory in your own repository when ready. No Git repository, commit or push was created by this implementation.
+1. Review and publish the portfolio repository when approved.
 2. Import it into Vercel with the Next.js preset. If the repository contains a parent folder, set the project root to `portfolio`.
 3. Use Node.js 22 or newer, install with `npm ci`, and build with `npm run build`.
 4. Configure the actual production environment values above. Keep sender and Redis credentials server-only. Use a verified sender domain.
@@ -146,7 +153,7 @@ Optional `NEXT_PUBLIC_WHATSAPP_NUMBER` overrides the supplied phone number. Use 
 
 ## Phase 2 organization
 
-The existing routing and server-rendered architecture are preserved. `src/data/flowdesk.ts` holds the 20-section bilingual study; `src/data/architecture.ts` holds diagram copy; `src/data/interface.ts` and `src/data/contact-copy.ts` keep interactive copy out of the full server content object. `src/lib/contact-schema.ts` contains only browser-safe validation, and `src/lib/contact-config.ts` supplies the shared server availability gate. Dedicated project-card, diagram and case-study components keep page compositions readable. The native HTML case-study contents control works without extra client state.
+The existing routing and server-rendered architecture are preserved. `src/data/flowdesk.ts` holds the bilingual deployed case study; `src/data/architecture.ts` holds diagram copy; `src/data/interface.ts` and `src/data/contact-copy.ts` keep interactive copy out of the full server content object. `src/lib/contact-schema.ts` contains only browser-safe validation, and `src/lib/contact-config.ts` supplies the shared server availability gate. Dedicated project-card, diagram and case-study components keep page compositions readable. The native HTML case-study contents control works without extra client state.
 
 The six services have explicit business outcomes and inquiry category IDs. There are seven inquiry types, with separate integration and application-improvement options. Budget ranges start with “Not sure yet” and “Under $1,000”; no hourly rates are implied.
 
@@ -158,6 +165,4 @@ No dependencies were added or removed in Phase 2. Next.js generates `AGENTS.md` 
 
 - Supply your actual website domain. Public business email, GitHub, LinkedIn and WhatsApp are already configured from the supplied details.
 - Configure and verify real Resend and Redis credentials; no real email delivery has been exercised.
-- Implement FlowDesk independently before adding working screenshots, repository or demo URLs.
 - Run Lighthouse/Core Web Vitals measurements on the deployed site and monitor real traffic; no performance score is claimed.
-- Publish only when you are ready. This task did not commit, push or deploy.
